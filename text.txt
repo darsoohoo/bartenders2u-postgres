@@ -1,0 +1,86 @@
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  var Service = sequelize.define('Service', {
+    body: {
+      type: DataTypes.STRING
+    },
+    levelId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    listorder: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+  }, {});
+  Service.associate = function(models) {
+    // associations can be defined here
+    Service.belongsTo(models.Level, {
+      foreignKey: "levelId",
+      onDelete: "CASCADE"
+    });
+  };
+  return Service;
+};
+
+
+
+
+-create Service
+'use strict';
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.createTable('Services', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      body: {
+        type: Sequelize.STRING
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      levelId: {
+        type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        allowNull: false,
+        references: {
+          model: "Levels",
+          key: "id",
+          as: "levelId"
+        }
+      },
+      listorder: {
+        type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        allowNull: true,
+      }
+
+    });
+  },
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable('Services');
+  }
+};
+
+
+
+
+
+
+
+➜  blooming-wave-36453 git:(master) heroku addons:create heroku-postgresql:hobby-dev
+Creating heroku-postgresql:hobby-dev on ⬢ bartenders2u... free
+Database has been created and is available
+ ! This database is empty. If upgrading, you can transfer
+ ! data from another database with pg:copy
+Created postgresql-amorphous-53238 as DATABASE_URL
+Use heroku addons:docs heroku-postgresql to view documentation

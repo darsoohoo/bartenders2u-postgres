@@ -1,0 +1,48 @@
+<% include ../static/partials/head.ejs  %>
+    <% include ../static/partials/navbar.ejs %>  
+
+        <header class="jumbotron my-4">
+        <h1>My Profile</h1>
+        <a href="/users/<%= user.id %>/edit">Edit Profile</a>
+        <div>
+       
+            <h4>First Name: <%= `${user.firstname} ` %></h4>
+            <h4>Last Name: <%= `${user.lastname} ` %></h4>
+            <h4>Email: <%= `${user.email} ` %></h4>
+           
+            <% if(currentUser.isAdmin()) { %>
+            <h4>Account type: <%= `${user.role} ` %>  </h4>
+           <% } else { %>
+
+
+            <% if (user.role == "standard") { %>
+                <h4>Account type: <%= `${user.role} ` %>  </h4>
+                <h6>Upgrade to Premium</h6>
+    
+                <form action="/users/<%= user.id %>/upgrade" method="POST">
+                    <script
+                      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                      data-key="pk_test_6MZnFoIl2Zi2eLXISh4IsgGW007XQEhMAt"
+                      data-amount="999"
+                      data-name="Darren"
+                      data-description="Widget"
+                      data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                      data-locale="auto">
+                    </script>
+                  </form>
+
+            <% } else { %>
+
+                <h4>Account type: <%= `${user.role} ` %>  </h4>
+                <form action="/users/<%= user.id %>/downgrade" method="POST">
+                    <button type="submit" class=" btn btn-primary">Downgrade</button>
+                </form>
+
+            <% } %>
+           <% } %>
+            
+        </div>
+        </header>
+
+    <% include ../static/partials/baseScripts.ejs  %>
+<% include ../static/partials/footer.ejs %>

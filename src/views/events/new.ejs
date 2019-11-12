@@ -1,0 +1,262 @@
+<% include ../static/partials/head.ejs %>
+    <% include ../static/partials/navbar.ejs %>
+    
+
+
+
+    
+    <div class="container-fluid">
+            
+        <div class="text-center">
+
+            <% if(currentUser) { %>
+               
+                
+            <form class="panel panel-primary" method="POST" action="/events/next/confirmation" >
+                <h3>Event Registration</h3>
+                <hr>
+
+                <h5>Package Selection</h5>
+
+                <select name="package" class="ui dropdown" id="select-package">
+                    <option value="<%= newLevels.bronzeprice %>"><%= newLevels.bronzename %>  $<%= newLevels.bronzeprice %></option>
+                    <option value="<%= newLevels.silverprice %>"><%= newLevels.silvername %>  $<%= newLevels.silverprice %></option>
+                    <option value="<%= newLevels.goldprice %>"><%= newLevels.goldname %>  $<%= newLevels.goldprice %></option>
+                    <option value="<%= newLevels.platinumprice %>"><%= newLevels.platinumname %>  $<%= newLevels.platinumprice %></option>
+                    <option value="<%= newLevels.diamondprice %>"><%= newLevels.diamondname %>  $<%= newLevels.diamondprice %></option>
+                </select>
+
+                <h5>Contact Info</h5>
+                <div class="form-group">
+
+                    <label for="firstname">
+                        <p class="label-txt">ENTER YOUR FIRST NAME</p>
+                        <input value="<%= currentUser.firstname %>" type="text" class="input" name="firstname" aria-describedby="textHelp" placeholder="">
+                        <div class="line-box">
+                            <div class="line"></div>
+                        </div>
+                    </label>
+        
+                    <label for="lastname">
+                        <p class="label-txt">YOUR LAST NAME</p>
+                        <input value="<%= currentUser.lastname %>" type="text" class="input" name="lastname" aria-describedby="textHelp" placeholder="">
+                        <div class="line-box">
+                        <div class="line"></div>
+                        </div>
+                    </label>
+
+                    <label for="email">
+                        <p class="label-txt">YOUR EMAIL</p>
+                        <input value="<%= currentUser.email %>" type="email" class="input" name="email" aria-describedby="emailHelp" placeholder="">
+                        <div class="line-box">
+                            <div class="line"></div>
+                        </div>
+                    </label>
+    
+                    <label for="phonenumber">
+                        <p class="label-txt">YOUR PHONE NUMBER</p>
+                        <input type="phonenumber" class="input" name="phonenumber" aria-describedby="phonenumberHelp" placeholder="">
+                        <div class="line-box">
+                        <div class="line"></div>
+                        </div>
+                    </label>
+
+
+                    <h5>Event Details</h5>
+                    <label for="venuename">
+                        <p class="label-txt">VENUE NAME</p>
+                        <input type="text" class="input" name="venuename" aria-describedby="venuenameHelp" placeholder="">
+                        <div class="line-box">
+                            <div class="line"></div>
+                        </div>
+                    </label>
+
+                     <div class="container">
+                            
+                              <div class="panel-heading">
+                                <h3 class="panel-title">Address</h3>
+                              </div>
+                              <div class="panel-body">
+                               <input id="autocomplete" placeholder="Enter your address"
+                                  onFocus="geolocate()" type="text" class="form-control">
+                                  <br>
+                               <div id="address">
+                                  <div class="row">
+                                     <div class="col-md-6">
+                                        <label class="control-label">Street address</label>
+                                        <input class="form-control" id="street_number" disabled="true">
+                                     </div>
+                                     <div class="col-md-6">
+                                        <label class="control-label">Route</label>
+                                        <input class="form-control" id="route" disabled="true">
+                                     </div>
+                                  </div>
+                                  <div class="row">
+                                     <div class="col-md-6">
+                                        <label class="control-label">City</label>
+                                        <input class="form-control field" id="locality" disabled="true">
+                                     </div>
+                                     <div class="col-md-6"> 
+                                        <label class="control-label">State</label>
+                                        <input class="form-control" id="administrative_area_level_1" disabled="true">
+                                     </div>
+                                  </div>
+                                  <div class="row">
+                                     <div class="col-md-6">
+                                        <label class="control-label">Zip code</label>
+                                        <input class="form-control" id="postal_code" disabled="true">
+                                     </div>
+                                     <div class="col-md-6">
+                                        <label class="control-label">Country</label>
+                                        <input class="form-control" id="country" disabled="true">
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                              </div>
+                               
+                    </div>
+
+                    <h6>Event Schedule</h6>
+                    <div class="ui calendar" id="eventdate">
+                        <div class="ui input left icon">
+                            <i class="calendar icon"></i>
+                            <input name="eventdate" type="text" placeholder="Date of Event">
+                        </div>
+                    </div>
+                    <div class="ui calendar" id="starttime">
+                        <div class="ui input left icon">
+                            <i class="time icon"></i>
+                            <input name="starttime" type="text" placeholder="Start Time">
+                        </div>
+                    </div>
+                    <div class="ui calendar" id="endtime">
+                        <div class="ui input left icon">
+                            <i class="time icon"></i>
+                            <input name="endtime" type="text" placeholder="End Time">
+                        </div>
+                    </div> 
+
+
+                    <button id="new-event-next" type="submit">Next</button>
+
+                </div>
+            </form>
+
+                <% } else { %>
+
+                <header class="jumbotron my-4">
+                    <h2>You must be logged in to continue</h2>
+                    <% include ../users/signinForm.ejs %>
+                </header>
+
+                <% }%>
+            
+        </div>
+    
+    </div>
+
+
+
+    <script>
+    /* SCRIPT FOR CALENDAR AND TIME COMPONENTS -----  https://codepen.io/SaadRegal/pen/ZOABQr */
+    
+    $('#eventdate').calendar({
+      type: 'date'
+    });
+    $('#starttime').calendar({
+      type: 'time'
+    });
+    $('#endtime').calendar({
+      type: 'time'
+    });
+
+
+    $('#select-package')
+    .dropdown()
+    ;
+    </script>
+
+
+ 
+<style>
+        .container {
+      margin-top: 20px;
+    }
+    
+    
+</style>
+    
+
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWIVh3whLUOcvexV_64nREOmg_TfclVQ0&libraries=places&callback=initAutocomplete" async defer></script>  
+    
+    <script>
+    var placeSearch, autocomplete;
+          var componentForm = {
+            street_number: 'short_name',
+            route: 'long_name',
+            locality: 'long_name',
+            administrative_area_level_1: 'short_name',
+            country: 'long_name',
+            postal_code: 'short_name'
+          };
+
+
+    
+          function initAutocomplete() {
+            // Create the autocomplete object, restricting the search to geographical
+            // location types.
+            //https://jsfiddle.net/solodev/ykajnmkk/?utm_source=website&utm_medium=embed&utm_campaign=ykajnmkk
+            autocomplete = new google.maps.places.Autocomplete(
+                /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+                {types: ['geocode']});
+    
+            // When the user selects an address from the dropdown, populate the address
+            // fields in the form.
+            autocomplete.addListener('place_changed', fillInAddress);
+          }
+    
+          function fillInAddress() {
+            // Get the place details from the autocomplete object.
+            var place = autocomplete.getPlace();
+    
+            for (var component in componentForm) {
+              document.getElementById(component).value = '';
+              document.getElementById(component).disabled = false;
+            }
+    
+            // Get each component of the address from the place details
+            // and fill the corresponding field on the form.
+            for (var i = 0; i < place.address_components.length; i++) {
+              var addressType = place.address_components[i].types[0];
+              if (componentForm[addressType]) {
+                var val = place.address_components[i][componentForm[addressType]];
+                document.getElementById(addressType).value = val;
+              }
+            }
+          }
+    
+          // Bias the autocomplete object to the user's geographical location,
+          // as supplied by the browser's 'navigator.geolocation' object.
+          function geolocate() {
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(function(position) {
+                var geolocation = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+                };
+                var circle = new google.maps.Circle({
+                  center: geolocation,
+                  radius: position.coords.accuracy
+                });
+                autocomplete.setBounds(circle.getBounds());
+              });
+            }
+          }
+    </script>
+
+
+    <% include ../static/partials/messages.ejs %>
+<% include ../static/partials/baseScripts.ejs %>
+

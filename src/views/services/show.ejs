@@ -1,0 +1,23 @@
+<% include ../static/partials/head.ejs %>
+  <% include ../static/partials/navbar.ejs %>
+    <% include ../static/partials/messages.ejs %>
+      
+      <h1>Edit Services</h1>
+      <form  method="post">
+        <% level.services.forEach((service) => { %>
+          <ul class="ui middle aligned divided list">
+              <form method="POST">
+                  <div class="item">
+                      <div class="right floated content">
+                          <button type="submit" class="btn btn-danger">Remove</button>
+                      </div>
+                      <li class="content"><%= service.body %></li>
+                  </div>
+              </form>
+      
+          </ul>        
+      <% }) %>
+      </form>
+     
+    <% include ../static/partials/baseScripts.ejs %>
+<% include ../static/partials/footer.ejs %>

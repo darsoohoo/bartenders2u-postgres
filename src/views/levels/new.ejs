@@ -1,0 +1,28 @@
+
+  <% include ../static/partials/head.ejs %>
+
+    <% include ../static/partials/navbar.ejs %>
+
+
+      <% include ../static/partials/messages.ejs %>
+      <h1>New Level</h1>
+
+      <form action="/levels/create" method="post">
+        <div class="form-group">
+          <label for="title">Level title</label>
+          <input type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
+          <small class="text-muted" id="titleHelp">Title must be 5 or more characters in length.</small>
+        </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <textarea rows="4" class="form-control" name="price" placeholder="Enter Price"></textarea>
+          <small class="text-muted" id="bodyHelp">Description must be 10 or more characters in length.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+  
+
+    <% include ../static/partials/baseScripts.ejs %>
+
+  <% include ../static/partials/footer.ejs %>

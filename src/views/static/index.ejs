@@ -1,0 +1,82 @@
+<% include ./partials/head.ejs %>
+   <% include ./partials/navbar.ejs %>  
+
+
+        <header class="jumbotron my-4">
+               
+            <% if(currentUser) { %>
+                <h1 class="display-3">Welcome back!</h1>
+                <p class="lead">Specializing in premiere Weddings, Corporate Events and Fundraisers.</p>
+                <p>Serving Sacramento & The Bay Area</p>
+                <a href="/levels">
+                    Compare Prices
+                </a>
+
+            <% } else { %>
+                <h1 class="display-3">Bartenders 2 U</h1>
+                <p class="lead">Specializing in premiere Weddings, Corporate Events and Fundraisers.</p>
+                <p>Serving Sacramento & The Bay Area</p>
+                <a href="/levels">
+                    Compare Prices
+                </a>
+
+            <% } %>
+                
+        </header>
+
+          
+        <div class="container-fluid">
+            <div class="text-center">
+                <h2>Process</h2>
+                <h4>Three steps closer to the craziest (or chill) night of your life</h4>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <h1>Step 1</h1>
+                        </div>
+                        <div class="panel-body">
+                        </div>
+                        <a href="/levels">
+                            <div class="panel-footer">
+                                <h3>Deposit</h3>
+                            </div>
+                        </a>
+                    </div> 
+                </div> 
+                <div class="col-sm-4">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <h1>Step 2</h1>
+                        </div>
+                        <div class="panel-body">
+                        </div>
+                        <a href="/levels">
+                            <div class="panel-footer">
+                                <h3>Plan</h3>
+                            </div>
+                        </a>
+                    </div> 
+                </div> 
+                <div class="col-sm-4">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <h1>Step 3</h1>
+                        </div>
+                        <div class="panel-body">
+                        </div>
+                        <a href="/levels">
+                            <div class="panel-footer">
+                                <h3>Party</h3>
+                            </div>
+                        </a>
+                    </div> 
+                </div> 
+            </div> 
+
+
+                
+    <% include ./partials/baseScripts.ejs %>
+<% include ./partials/footer.ejs %>
+

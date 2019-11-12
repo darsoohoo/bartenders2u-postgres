@@ -1,0 +1,23 @@
+<% include ../static/partials/head.ejs %>
+<% include ../static/partials/navbar.ejs %>
+
+        <h1><%= level.title %></h1>
+        <h5><%= level.price %></h5>
+
+        <header class="jumbotron my-4">
+              <% if(currentUser) { %>
+                <% if(currentUser.isAdmin()) { %>
+              <a href="/levels/<%= level.id %>/edit" class="btn btn-warning">Edit Level</a>
+              <form style="display:initial" action="/levels/<%= level.id %>/destroy" method="post">
+                  <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+               <% } %>
+              <% } %>
+            
+              <% include ../services/services.ejs %>
+            <hr>
+        </header>
+
+
+<% include ../static/partials/baseScripts.ejs %>
+<% include ../static/partials/footer.ejs %>

@@ -1,0 +1,181 @@
+<% include ../static/partials/head.ejs %>
+<% include ../static/partials/navbar.ejs %>
+<form id="levels" action="/events/new" method="POST">
+  
+        <div class="container-fluid">
+            <div class="text-center">
+              <h2>Pricing</h2>
+              <h5>Don't let your friends hang out to dry. Select the right package for your next social gathering</h5>
+              <h4></h4>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                
+                <div class="panel panel-default text-center">
+
+                  <div class="panel-heading">
+                    <h1>Bronze</h1>
+                  </div>
+                  <div class="panel-body">
+                      <br>
+                      <% levels.forEach((level) => { %>
+                        <% level.services.forEach((service) => { %>
+                          <% if(service.levelId === 1) { %>
+                              <div><%= service.body %></div>
+                          <% } %>
+                      <% }) %>
+                      <% }) %>
+                  </div>
+                  <br>
+                  <div class="panel-footer">
+                        <h3>                    
+                            <% levels.forEach((level) => { %>
+                                <% if(level.id == 1 ) { %>
+                                $<%= level.price %>
+                                <input name="bronzename" type="hidden" value="<%= level.title %>">
+                                <input name="bronzeprice" type="hidden" value="<%= level.price %>">
+                                <% } %>
+                            <% }) %>
+                        </h3>
+                        <input type="submit" class="btn btn-lg" value="Sign Up">
+                  </div>
+                </div> 
+               
+              </div> 
+          
+              <div class="col-sm-4">
+                <div class="panel panel-default text-center">
+                  <div class="panel-heading">
+                    <h1>Silver</h1>
+                  </div>
+                  <div class="panel-body">
+                      <br>
+                      <% levels.forEach((level) => { %>
+                        <% level.services.forEach((service) => { %>
+                          <% if(service.levelId === 2) { %>
+                              <div><%= service.body %></div>
+                          <% } %>
+                      <% }) %>
+                      <% }) %>
+                  </div>
+                  <br>
+                  <div class="panel-footer">
+                      <h3>                        
+                          <% levels.forEach((level) => { %>
+                            <% if(level.id == 2 ) { %>
+                              $<%= level.price %>
+                              <input name="silvername" type="hidden" value="<%= level.title %>">
+                              <input name="silverprice" type="hidden" value="<%= level.price %>">
+                            <% } %>
+                          <% }) %>
+                        </h3>
+                        <input type="submit" class="btn btn-lg" value="Sign Up">
+                  </div>
+                </div> 
+              </div> 
+             <div class="col-sm-4">
+                <div class="panel panel-default text-center">
+                  <div class="panel-heading">
+                    <h1>Gold</h1>
+                  </div>
+                  <div class="panel-body">
+                      <br>
+                      <% levels.forEach((level) => { %>
+                        <% level.services.forEach((service) => { %>
+                          <% if(service.levelId === 3) { %>
+                              <div><%= service.body %></div>
+                          <% } %>
+                      <% }) %>
+                      <% }) %>
+                  </div>
+                  <div class="panel-footer">
+                      <h3>                        
+                          <% levels.forEach((level) => { %>
+                            <% if(level.id == 3 ) { %>
+                              $<%= level.price %>
+                              <input name="goldname" type="hidden" value="<%= level.title %>">
+                              <input name="goldprice" type="hidden" value="<%= level.price %>">
+                            <% } %>
+                          <% }) %>
+                        </h3>
+                    <input type="submit" class="btn btn-lg" value="Sign Up">
+                  </div>
+                </div> 
+              </div> 
+            </div> 
+            <br>
+  
+            <div class="container-fluid">
+  
+              <div class="row">
+              <div class="col-sm-6">
+                  <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                      <h1>Platinum</h1>
+                    </div>
+                    <div class="panel-body">
+                      <br>
+                        <% levels.forEach((level) => { %>
+                          <% level.services.forEach((service) => { %>
+                            <% if(service.levelId === 4) { %>
+                                <div><%= service.body %></div>
+                              
+                            <% } %>
+                        <% }) %>
+                        <% }) %>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="panel-footer">
+                        <h3>                        
+                            <% levels.forEach((level) => { %>
+                              <% if(level.id == 4 ) { %>
+                                $<%= level.price %>
+                                <input name="platinumname" type="hidden" value="<%= level.title %>">
+                                <input name="platinumprice" type="hidden" value="<%= level.price %>">
+                              <% } %>
+                            <% }) %>
+                          </h3>
+                        <input type="submit" class="btn btn-lg" value="Sign Up">
+                    </div>
+                  </div> 
+                </div> 
+  
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-center">
+                      <div class="panel-heading">
+                        <h1>Diamond</h1>
+                      </div>
+                      <div class="panel-body">
+                          <br>
+                          <% levels.forEach((level) => { %>
+                            <% level.services.forEach((service) => { %>
+                              <% if(service.levelId === 5) { %>
+                                <div><%= service.body %></div>
+                              <% } %>
+                            <% }) %>
+                          <% }) %>
+                      </div>
+                      <div class="panel-footer">
+                        <br>
+                        <h3>                        
+                          <% levels.forEach((level) => { %>
+                            <% if(level.id == 5 ) { %>
+                              $<%= level.price %>
+                              <input name="diamondname" type="hidden" value="<%= level.title %>">
+                              <input name="diamondprice" type="hidden" value="<%= level.price %>">
+                            <% } %>
+                          <% }) %>
+                        </h3>
+                        <input type="submit" class="btn btn-lg" value="Sign Up">
+                      </div>
+                    </div> 
+                </div> 
+            </div>
+          </div>
+        </form>
+    </form>
+  <% include ../static/partials/baseScripts.ejs %>
+<% include ../static/partials/footer.ejs %>

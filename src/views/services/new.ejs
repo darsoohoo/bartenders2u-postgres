@@ -1,0 +1,18 @@
+<% include ../static/partials/head.ejs %>
+  <% include ../static/partials/navbar.ejs %>
+      <% include ../static/partials/messages.ejs %>
+
+      <h1>New Post</h1>
+
+      <form action="/levels/<%= levelId %>/services/create" method="post">
+        <div class="form-group">
+          <label for="body">Service body</label>
+          <input value="<%= service.body %>" type="text" class="form-control" name="body" aria-describedby="titleHelp" placeholder="Enter Service">
+          <small class="text-muted" id="titleHelp">Body must be 2 or more characters in length.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+
+  <% include ../static/partials/baseScripts.ejs %>
+<% include ../static/partials/footer.ejs %>

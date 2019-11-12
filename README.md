@@ -1,4 +1,4 @@
-# Bartenders2U Bloc Capstone Project
+# Bartenders2U Bloc Capstone Project wiht Postgres
 This is app is for my capstone project at Bloc.
 
 ### `npm run dev`
